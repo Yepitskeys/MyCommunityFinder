@@ -1,0 +1,218 @@
+<!--In the commented code, I have provided explanations for each section of the HTML code. It describes the purpose of each element, such as input fields, buttons, checkboxes, and their corresponding labels. Additionally, it explains the purpose of included external CSS and JavaScript files, as well as the placeholders for Walk Score data and the map container.-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Set the compatibility mode for Internet Explorer -->
+        <meta http-equiv='X-UA-Compatible' content='IE=Edge' />
+
+        <!-- Set the character encoding for the document -->
+        <meta charset='UTF-8'>
+
+        <!-- Set the viewport properties for responsive design -->
+        <meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no'/>
+
+        <!-- Include the CSS file for TomTom Maps SDK -->
+        <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.12.0/maps/maps.css'>
+
+        <!-- Include the JavaScript file for TomTom Maps SDK -->
+        <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.12.0/maps/maps-web.min.js'></script>
+
+        <!-- Include the JavaScript file for TomTom Services SDK -->
+        <script src='https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.13.0/services/services-web.min.js'></script>
+
+        <!-- Include the jQuery library from Google CDN -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <!-- Include the Pure CSS file from CDN -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+
+        <!-- Include the Bootstrap CSS file from CDN -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Include the Bootstrap JavaScript file from CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Include a custom CSS file -->
+        <link rel="stylesheet" href="./Assets/style.css">
+        <link rel="stylesheet" href="./Assets/poistyle.css">
+
+        <title>Search Nearby Places!</title>
+    </head>
+
+    
+    <body>
+        <header>
+             <!-- Navbar Start -->
+            <nav class="navbar navbar-expand-md bg-dark navbar-dark" style="background: linear-gradient(45deg,hsla(168, 85%, 52%, 0.7), hsla(263, 88%, 45%, 0.7) 100%); background-color: darkgray;">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="./POIpage.html">
+                        <img src="./Assets/images/CF Logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                        MyCommunity Finder</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav ms-auto mb-6 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./contact.html">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="termspage.html">Terms & Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="AboutUspage.html">About Us</a>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </nav>
+        <!-- Navbar End -->
+        </header>
+        
+        <div class="container-fluid my-5">
+            <div class="row p-4 pb-4   align-items-center rounded-3 border shadow-lg">
+            <!-- Container for the POI search section -->
+            <br>
+            <div id="selection ">
+                <h4 class="mb-3 mt-3 text-center">Search Nearby Places!</h4>
+                
+                <!-- Input field for entering the address -->
+                <input type="search" placeholder="Enter Your Address Here" id="addressInput" class="text-center form-control mt-3 mb-2 bg-white">
+
+              
+                <!-- Button for initiating the search -->
+                <button id="searchBtn" class="btn btn-primary ms-2" style="background: linear-gradient(45deg,hsla(168, 85%, 52%, 0.7), hsla(263, 88%, 45%, 0.7) 100%)";>Search</button>
+
+                <!-- Container for the collapsible map options -->
+                <div class="collapse" id="mapOptions">
+                    <div class="card card-body">
+                        <div class="row">
+                            <div class="col">
+                                <!-- Dropdown for selecting from search history -->
+                                <select id="searchesDropdown">
+                                    <option value="" selected>Select from history...</option>
+                                    <!-- Other options will be added here dynamically by JavaScript -->
+                                </select>
+                            </div>
+                            <div class="col">
+                                <!-- Button for clearing search history -->
+                                <button class="btn btn-sm btn-warning" id="clearHistoryBtn">Clear</button>
+                            </div>
+                        </div>
+
+                        <!-- Slider for selecting radius -->
+                        <div class="slidecontainer mt-3">
+                            <input type="range" min="1" max="20" value="2" class="slider form-range" id="radius">
+                            <span id="radiusValue" class="ms-2">2 mi</span>
+                        </div>
+
+                        <!-- Table for POI categories -->
+                        <table class="mt-3">
+                            <tr>
+                                <td>
+                                    <!-- Checkbox for Coffee category -->
+                                    <div class="form-check">
+                                        <input id="chk_coffee" type="checkbox" value="9376006" class="form-check-input">
+                                        <label for="chk_coffee" class="form-check-label">Coffee</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <!-- Checkbox for Park category -->
+                                    <div class="form-check">
+                                        <input id="chk_park" type="checkbox" value="9362" class="form-check-input">
+                                        <label for="chk_park" class="form-check-label">Park</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <!-- Checkbox for Supermarket category -->
+                                    <div class="form-check">
+                                        <input id="chk_supermarket" type="checkbox" value="7332005" class="form-check-input">
+                                        <label for="chk_supermarket" class="form-check-label">Super Market</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <!-- Checkbox for Fast Food category -->
+                                    <div class="form-check">
+                                        <input id="chk_fastfood" type="checkbox" value="7315015" class="form-check-input">
+                                        <label for="chk_fastfood" class="form-check-label">Fast Food</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <!-- Checkbox for Restaurant category -->
+                                    <div class="form-check">
+                                        <input id="chk_restaurant" type="checkbox" value="7315020" class="form-check-input">
+                                        <label for="chk_restaurant" class="form-check-label">Restaurant</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <!-- Checkbox for Pizzaria category -->
+                                    <div class="form-check">
+                                        <input id="chk_pizzaria" type="checkbox" value="7315036" class="form-check-input">
+                                        <label for="chk_pizzaria" class="form-check-label">Pizzeria</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <!-- Checkbox for Veterinarian category -->
+                                    <div class="form-check">
+                                        <input id="chk_veterinarian" type="checkbox" value="9375" class="form-check-input">
+                                        <label for="chk_veterinarian" class="form-check-label">Veterinarian</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <!-- Checkbox for Café category -->
+                                    <div class="form-check">
+                                        <input id="chk_cafe" type="checkbox" value="9376002" class="form-check-input">
+                                        <label for="chk_cafe" class="form-check-label">Café</label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <!-- Checkbox for Ice Cream category -->
+                                    <div class="form-check">
+                                        <input id="chk_icecream" type="checkbox" value="7315078" class="form-check-input">
+                                        <label for="chk_icecream" class="form-check-label">Ice Cream</label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- Button for toggling map options -->
+                <button class="btn btn-info" type="button" data-bs-toggle="collapse" data-bs-target="#mapOptions" aria-expanded="false" aria-controls="mapOptions">
+                    Map Options
+                </button>
+                                
+
+                <!-- Walk Score section -->
+                <div class="mt-2">
+                    <img class="align-top" src="https://cdn.walk.sc/images/api-logo.png" alt="Walk Score">
+
+                    <!-- Placeholder for the Walk Score value -->
+                    <span id="walkscore"></span>
+
+                    <!-- Placeholder for the Walk Score description -->
+                    <span id="walkscore_description"></span>
+                    
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="container-fluid my-5">
+            <div class="row p-4 pb-4   justify-content-center border shadow-lg">
+            <!-- Container for the map -->
+            <div id="map"></div>
+            </div>
+        </div>
+            <!-- Include the JavaScript file for custom script -->
+            <script src="./Assets/script.js"></script>
+    </body>
+</html>

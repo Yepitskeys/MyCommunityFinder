@@ -1,0 +1,139 @@
+:root {
+    --bs-gray-dark: #343a40;
+}
+
+*{
+     font-family: 'Open Sans', sans-serif;
+}
+
+#map {
+    position:relative;
+    top: 55%;
+    width: 96vw;
+    height: 49vh;
+    
+}
+#map h1 { line-height:1.1em; }
+#selection { 
+    height: 42vh;
+    z-index: 9;
+    position: absolute;
+    top: 0;
+    left: 40%;
+    width: 30vw;                
+ }
+.mapboxgl-popup-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+.mapboxgl-popup-content h1 {
+    color: #333;
+    font-size: 40px;
+    margin-bottom: 5px;
+}
+.mapboxgl-popup-content p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 5px;
+}
+.mapboxgl-popup-close-button {
+    font-size: 25px;
+}
+
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    /*display: inline-block;*/
+    font-size: 16px;
+    float: right;
+    border-radius: 2rem;
+    box-shadow: #4CAF50;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+/* Navbar Styling */
+
+.nav-item::after {
+    content: '';
+    display: block;
+    width: 0px;
+    height: 3px;
+    background: linear-gradient(45deg,hsla(168, 85%, 52%, 0.7), hsla(263, 88%, 45%, 0.7) 100%);
+    transition: 0.4s
+}
+
+.nav-item:hover::after {
+    width: 100%
+}
+
+.navbar-dark .navbar-nav .active>.nav-link,
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .show>.nav-link,
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: white;
+    font-weight: bold;
+}
+
+.nav-link {
+    padding: 10px 5px;
+    transition: 0.2s
+}
+
+.nav-link:hover {
+    background-color: rgb(28, 150, 198);
+    
+}
+
+nav li::after {
+    font-weight: bolder;
+    
+}
+
+nav {
+    display: flex;
+}
+
+h1 {
+    font-weight: bolder;
+    font-size: 200%;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 200%;
+    margin-top: 1em;
+}
+
+h4 {
+    font-weight: bold;
+    font-size: 200%;
+    margin-top: auto;
+}
+
+#button:hover{
+    background-color: rgb(28, 150, 198);
+}
+
+/* If the screen size is 1200px wide or more, set the font-size to 80px */
+@media (min-width: 1200px) {
+    .responsive-font-example {
+      font-size: 50px;
+    }
+  }
+  /* If the screen size is smaller than 1200px, set the font-size to 80px */
+  @media (max-width: 1199.98px) {
+    .responsive-font-example {
+      font-size: 20px;
+    }
+  }
